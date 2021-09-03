@@ -25,7 +25,7 @@ def checkForWords(letters, words_list):
         amountOfChar_list.append(letters.count(letter))
 
     for word in words_list:
-        if  letter_list[4] in word:
+        if  letter_list[4] in word and len(word)>= 4:
             temp_list.append(word)
     
     for word in temp_list:
@@ -36,7 +36,7 @@ def checkForWords(letters, words_list):
         i = 0
         exits = False
         for letter in letter_list:
-            if word.count(letter) == amountOfChar_list[i] or word.count(letter) == 0:
+            if word.count(letter) <= amountOfChar_list[i]:
                 i+=1
                 exits = True
             else:
