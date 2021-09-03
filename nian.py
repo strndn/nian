@@ -7,9 +7,9 @@ def getWords():
 def getInput():
     while True:
         puzzleLetters = input("Nian: ")
-        if len(puzzleLetters) == 9:
+        if len(puzzleLetters) == 9 and puzzleLetters.isalpha():
             return puzzleLetters
-        print('Antal tecken skall vara 9 stycken!')
+        print('Antal tecken skall vara 9 stycken och det får endast vara bokstäver!')
 
 def checkForWords(letters, words_list):
     temp_list = []
