@@ -20,18 +20,23 @@ def checkForWords(letters, words_list):
     allowed_chars = set(letters)
     amountOfChar_list = []
 
-
+    #Gör en lista som innehåller antalet för varje bokstav.
     for letter in letter_list:
         amountOfChar_list.append(letters.count(letter))
 
+    #Gör en lista med ord som innehåller mittersta bokstaven.
     for word in words_list:
         if  letter_list[4] in word and len(word)>= 4:
             temp_list.append(word)
     
+    #Gör en lista som endast innehåller de inmatade bokstäverna.
     for word in temp_list:
         if set(word).issubset(allowed_chars):
             temp_list2.append(word)
     
+    #Gör den slutgiltiga listan med de ord som kan hittas i pusslet.
+    #Genom att jämnföra alla ord som innehåller de tillåtna bokstäverna
+    #mot listan som innehåller hur många av dessa bokstäver som ordet får innehålla.
     for word in temp_list2:
         i = 0
         exits = False
