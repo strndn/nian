@@ -14,34 +14,35 @@ def getInput():
             return puzzleLetters
         print('Antal tecken skall vara 9 stycken och det får endast vara bokstäver!')
 
-#Kontrollerar och returnerar en lista med det eftertraktade orden.
-def checkForWords(letters, words_list):
-    temp_list = []
-    temp_list2 = []
-    wantedWords_list = []
-
-    letter_list = list(letters)
-    allowed_chars = set(letters)
+#Gör en lista som innehåller antalet för varje bokstav.
+def getCharAmountL(letter_list, letters):
     amountOfChar_list = []
-
-    #Gör en lista som innehåller antalet för varje bokstav.
     for letter in letter_list:
         amountOfChar_list.append(letters.count(letter))
+    return amountOfChar_list
 
-    #Gör en lista med ord som innehåller mittersta bokstaven.
+#Gör en lista med ord som innehåller mittersta bokstaven.
+def getListContMidChar(letter_list, words_list):
+    tempWord_list = []
     for word in words_list:
         if  letter_list[4] in word and len(word)>= 4:
-            temp_list.append(word)
-    
-    #Gör en lista som endast innehåller de inmatade bokstäverna.
-    for word in temp_list:
-        if set(word).issubset(allowed_chars):
-            temp_list2.append(word)
-    
-    #Gör den slutgiltiga listan med de ord som kan hittas i pusslet.
-    #Genom att jämnföra alla ord som innehåller de tillåtna bokstäverna
-    #mot listan som innehåller hur många av dessa bokstäver som ordet får innehålla.
-    for word in temp_list2:
+            tempWord_list.append(word)
+    return tempWord_list
+
+#Gör en lista som endast innehåller de inmatade bokstäverna.
+def getListContWords(tempWord_list, allowedChars):
+    contWord_list = []
+    for word in tempWord_list:
+        if set(word).issubset(allowedChars):
+            contWord_list.append(word)
+    return contWord_list
+
+#Gör den slutgiltiga listan med de ord som kan hittas i pusslet.
+#Genom att jämnföra alla ord som innehåller de tillåtna bokstäverna
+#mot listan som innehåller hur många av dessa bokstäver som ordet får innehålla.
+def getWantedWords(contWord_list, letter_list, amountOfChar_list):
+    wantedWords_list = []
+    for word in contWord_list:
         i = 0
         exits = False
         for letter in letter_list:
@@ -53,8 +54,13 @@ def checkForWords(letters, words_list):
                 break
         if exits == True:
             wantedWords_list.append(word)
-
     return wantedWords_list
+
+#Kontrollerar och returnerar en lista med det eftertraktade orden.
+def checkForWords(letters, words_list):
+    letter_list = list(letters)
+    allowedChars = set(letters)
+    return getWantedWords(getListContWords(getListContMidChar(letter_list, words_list), allowedChars), letter_list, getCharAmountL(letter_list, letters))
 
 wantedWords = checkForWords(getInput(), getWords())
 wantedWordsUsingAllLetters = []
