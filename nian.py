@@ -9,9 +9,9 @@ def getWords():
 #Tar in input.
 def getInput():
     while True:
-        puzzleLetters = input("Nian: ").lower()
-        if len(puzzleLetters) == 9 and puzzleLetters.isalpha():
-            return puzzleLetters
+        letters = input("Nian: ").lower()
+        if len(letters) == 9 and letters.isalpha():
+            return letters
         print('Antal tecken skall vara 9 stycken och det får endast vara bokstäver!')
 
 #Gör en lista som innehåller antalet för varje bokstav.
