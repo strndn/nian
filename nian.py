@@ -62,6 +62,7 @@ def checkForWords(letters, words_list):
     allowedChars = set(letters)
     return getWantedWords(getListContWords(getListContMidChar(letter_list, words_list), allowedChars), letter_list, getCharAmountL(letter_list, letters))
 
+#Startar programmet
 wantedWords = checkForWords(getInput(), getWords())
 wantedWordsUsingAllLetters = []
 
