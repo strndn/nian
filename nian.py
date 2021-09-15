@@ -44,15 +44,15 @@ def getWantedWords(contWord_list, letter_list, amountOfChar_list):
     wantedWords_list = []
     for word in contWord_list:
         i = 0
-        exits = False
+        isOkay = False
         for letter in letter_list:
             if word.count(letter) <= amountOfChar_list[i]:
                 i+=1
-                exits = True
+                isOkay = True
             else:
-                exits = False
+                isOkay = False
                 break
-        if exits == True:
+        if isOkay == True:
             wantedWords_list.append(word)
     return wantedWords_list
 
